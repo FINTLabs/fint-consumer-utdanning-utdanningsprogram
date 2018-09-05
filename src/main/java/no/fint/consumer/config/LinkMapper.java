@@ -35,6 +35,7 @@ public class LinkMapper {
                 .put(Medlemskap.class.getName(), "/utdanning/elev/medlemskap")
                 .put(Person.class.getName(), "/utdanning/elev/person")
                 .put(Undervisningsforhold.class.getName(), "/utdanning/elev/undervisningsforhold")
+                .put(Skoleressurs.class.getName(), "/utdanning/elev/skoleressurs")
                 .put(Fag.class.getName(), "/utdanning/timeplan/fag")
                 .put(Rom.class.getName(), "/utdanning/timeplan/rom")
                 .put(Time.class.getName(), "/utdanning/timeplan/time")

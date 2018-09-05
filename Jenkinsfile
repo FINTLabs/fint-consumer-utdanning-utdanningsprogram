@@ -1,24 +1,41 @@
 pipeline {
-    agent none
+    agent { label 'docker' }
     stages {
         stage('Build') {
-            agent { label 'docker' }
             steps {
                 script {
                     props=readProperties file: 'gradle.properties'
                     VERSION="${props.version}-${props.apiVersion}"
                 }
-                sh "docker build --tag 'dtr.rogfk.no/fint-beta/consumer-utdanning-utdanningsprogram:${VERSION}' --build-arg apiVersion=${props.apiVersion} ."
+                sh "docker build --tag ${GIT_COMMIT} --build-arg apiVersion=${props.apiVersion} ."
             }
         }
         stage('Publish') {
-            agent { label 'docker' }
             when {
                 branch 'master'
             }
             steps {
-                withDockerRegistry([credentialsId: 'dtr-rogfk-no', url: 'https://dtr.rogfk.no']) {
-                    sh "docker push 'dtr.rogfk.no/fint-beta/consumer-utdanning-utdanningsprogram:${VERSION}'"
+                sh "docker tag ${GIT_COMMIT} dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${VERSION}"
+                withDockerRegistry([credentialsId: 'dtr-fintlabs-no', url: 'https://dtr.fintlabs.no']) {
+                    sh "docker push 'dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${VERSION}'"
+                }
+            }
+        }
+        stage('Publish Tag') {
+            when { buildingTag() }
+            steps {
+                sh "docker tag ${GIT_COMMIT} dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${TAG_NAME}"
+                withDockerRegistry([credentialsId: 'dtr-fintlabs-no', url: 'https://dtr.fintlabs.no']) {
+                    sh "docker push 'dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${TAG_NAME}'"
+                }
+            }
+        }
+        stage('Publish PR') {
+            when { changeRequest() }
+            steps {
+                sh "docker tag ${GIT_COMMIT} dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${BRANCH_NAME}"
+                withDockerRegistry([credentialsId: 'dtr-fintlabs-no', url: 'https://dtr.fintlabs.no']) {
+                    sh "docker push 'dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${BRANCH_NAME}'"
                 }
             }
         }
