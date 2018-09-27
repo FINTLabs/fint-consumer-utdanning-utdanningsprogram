@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+import static java.util.Objects.isNull;
+import static org.springframework.util.StringUtils.isEmpty;
+
+
 @Component
 public class ProgramomradeLinker extends FintLinker<ProgramomradeResource> {
 
@@ -29,7 +33,7 @@ public class ProgramomradeLinker extends FintLinker<ProgramomradeResource> {
 
     @Override
     public String getSelfHref(ProgramomradeResource programomrade) {
-        if (programomrade.getSystemId() != null && programomrade.getSystemId().getIdentifikatorverdi() != null) {
+        if (!isNull(programomrade.getSystemId()) && !isEmpty(programomrade.getSystemId().getIdentifikatorverdi())) {
             return createHrefWithId(programomrade.getSystemId().getIdentifikatorverdi(), "systemid");
         }
         

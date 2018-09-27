@@ -14,7 +14,7 @@ buildscript {
 
 plugins {
     id 'com.github.kt3k.coveralls' version '2.8.2'
-    id 'com.github.ben-manes.versions' version '0.20.0'
+    id 'com.github.ben-manes.versions' version '0.17.0'
 }
 
 apply plugin: 'java'
@@ -34,11 +34,12 @@ repositories {
 }
 
 dependencies {
-    compile("no.fint:fint-administrasjon-resource-model-java:${apiVersion}")
+
     compile("no.fint:fint-utdanning-resource-model-java:${apiVersion}")
+    compile("no.fint:fint-administrasjon-resource-model-java:${apiVersion}")
 
     compile('no.fint:fint-event-model:3.0.0')
-    compile('no.fint:fint-relations:2.0.0-beta-6')
+    compile('no.fint:fint-relations:2.0.0')
     compile('no.fint:fint-events:2.1.0')
     compile('no.fint:fint-audit-mongo-plugin:1.4.1')
     compile('no.fint:fint-cache:2.0.1-rc-3')

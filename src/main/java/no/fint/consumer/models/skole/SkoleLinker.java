@@ -8,6 +8,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 
+import static java.util.Objects.isNull;
+import static org.springframework.util.StringUtils.isEmpty;
+
+
 @Component
 public class SkoleLinker extends FintLinker<SkoleResource> {
 
@@ -29,13 +33,13 @@ public class SkoleLinker extends FintLinker<SkoleResource> {
 
     @Override
     public String getSelfHref(SkoleResource skole) {
-        if (skole.getSkolenummer() != null && skole.getSkolenummer().getIdentifikatorverdi() != null) {
+        if (!isNull(skole.getSkolenummer()) && !isEmpty(skole.getSkolenummer().getIdentifikatorverdi())) {
             return createHrefWithId(skole.getSkolenummer().getIdentifikatorverdi(), "skolenummer");
         }
-        if (skole.getSystemId() != null && skole.getSystemId().getIdentifikatorverdi() != null) {
+        if (!isNull(skole.getSystemId()) && !isEmpty(skole.getSystemId().getIdentifikatorverdi())) {
             return createHrefWithId(skole.getSystemId().getIdentifikatorverdi(), "systemid");
         }
-        if (skole.getOrganisasjonsnummer() != null && skole.getOrganisasjonsnummer().getIdentifikatorverdi() != null) {
+        if (!isNull(skole.getOrganisasjonsnummer()) && !isEmpty(skole.getOrganisasjonsnummer().getIdentifikatorverdi())) {
             return createHrefWithId(skole.getOrganisasjonsnummer().getIdentifikatorverdi(), "organisasjonsnummer");
         }
         
