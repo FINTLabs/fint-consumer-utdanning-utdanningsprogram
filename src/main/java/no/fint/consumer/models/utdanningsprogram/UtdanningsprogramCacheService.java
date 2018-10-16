@@ -21,7 +21,6 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -63,12 +62,12 @@ public class UtdanningsprogramCacheService extends CacheService<Utdanningsprogra
 
     @PostConstruct
     public void init() {
-        Arrays.stream(props.getOrgs()).forEach(this::createCache);
+        props.getAssets().forEach(this::createCache);
     }
 
-    @Scheduled(initialDelayString = ConsumerProps.CACHE_INITIALDELAY_UTDANNINGSPROGRAM, fixedRateString = ConsumerProps.CACHE_FIXEDRATE_UTDANNINGSPROGRAM)
+    @Scheduled(initialDelayString = Constants.CACHE_INITIALDELAY_UTDANNINGSPROGRAM, fixedRateString = Constants.CACHE_FIXEDRATE_UTDANNINGSPROGRAM)
     public void populateCacheAll() {
-        Arrays.stream(props.getOrgs()).forEach(this::populateCache);
+        props.getAssets().forEach(this::populateCache);
     }
 
     public void rebuildCache(String orgId) {
