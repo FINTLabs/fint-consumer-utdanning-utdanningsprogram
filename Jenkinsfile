@@ -17,7 +17,11 @@ pipeline {
             steps {
                 sh "docker tag ${GIT_COMMIT} dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${VERSION}"
                 withDockerRegistry([credentialsId: 'dtr-fintlabs-no', url: 'https://dtr.fintlabs.no']) {
-                    sh "docker push 'dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${VERSION}'"
+                    sh "docker push dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${VERSION}"
+                }
+                sh "docker tag ${GIT_COMMIT} fintlabs.azurecr.io/consumer-utdanning-utdanningsprogram:${VERSION}"
+                withDockerRegistry([credentialsId: 'fintlabs.azurecr.io', url: 'https://fintlabs.azurecr.io']) {
+                    sh "docker push fintlabs.azurecr.io/consumer-utdanning-utdanningsprogram:${VERSION}"
                 }
             }
         }
@@ -26,7 +30,7 @@ pipeline {
             steps {
                 sh "docker tag ${GIT_COMMIT} dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${TAG_NAME}"
                 withDockerRegistry([credentialsId: 'dtr-fintlabs-no', url: 'https://dtr.fintlabs.no']) {
-                    sh "docker push 'dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${TAG_NAME}'"
+                    sh "docker push dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${TAG_NAME}"
                 }
             }
         }
@@ -35,7 +39,7 @@ pipeline {
             steps {
                 sh "docker tag ${GIT_COMMIT} dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${BRANCH_NAME}"
                 withDockerRegistry([credentialsId: 'dtr-fintlabs-no', url: 'https://dtr.fintlabs.no']) {
-                    sh "docker push 'dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${BRANCH_NAME}'"
+                    sh "docker push dtr.fintlabs.no/beta/consumer-utdanning-utdanningsprogram:${BRANCH_NAME}.${BUILD_NUMBER}"
                 }
             }
         }
