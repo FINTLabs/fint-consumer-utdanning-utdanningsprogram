@@ -75,7 +75,8 @@ public class SkoleCacheService extends CacheService<SkoleResource> {
 		populateCache(orgId);
 	}
 
-    private void populateCache(String orgId) {
+    @Override
+    public void populateCache(String orgId) {
 		log.info("Populating Skole cache for {}", orgId);
         Event event = new Event(orgId, Constants.COMPONENT, UtdanningsprogramActions.GET_ALL_SKOLE, Constants.CACHE_SERVICE);
         consumerEventUtil.send(event);

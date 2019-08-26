@@ -75,7 +75,8 @@ public class ProgramomradeCacheService extends CacheService<ProgramomradeResourc
 		populateCache(orgId);
 	}
 
-    private void populateCache(String orgId) {
+    @Override
+    public void populateCache(String orgId) {
 		log.info("Populating Programomrade cache for {}", orgId);
         Event event = new Event(orgId, Constants.COMPONENT, UtdanningsprogramActions.GET_ALL_PROGRAMOMRADE, Constants.CACHE_SERVICE);
         consumerEventUtil.send(event);

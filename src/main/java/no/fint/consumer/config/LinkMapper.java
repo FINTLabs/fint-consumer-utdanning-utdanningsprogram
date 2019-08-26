@@ -2,7 +2,6 @@ package no.fint.consumer.config;
 
 import com.google.common.collect.ImmutableMap;
 import no.fint.consumer.utils.RestEndpoints;
-import no.fint.model.administrasjon.organisasjon.Organisasjonselement;
 import no.fint.model.felles.Person;
 import no.fint.model.utdanning.elev.*;
 import no.fint.model.utdanning.kodeverk.Elevkategori;
@@ -44,7 +43,7 @@ public class LinkMapper {
                 .put(Fravarstype.class.getName(), "/utdanning/kodeverk/fravarstype")
                 .put(Karakterskala.class.getName(), "/utdanning/kodeverk/karakterskala")
                 .put(Skoleeiertype.class.getName(), "/utdanning/kodeverk/skoleeiertype")
-                .put(Organisasjonselement.class.getName(), "/administrasjon/organisasjon/organisasjonselement")
+                .put("no.fint.model.administrasjon.organisasjon.Organisasjonselement", "/administrasjon/organisasjon/organisasjonselement")
                 .build();
     }
 

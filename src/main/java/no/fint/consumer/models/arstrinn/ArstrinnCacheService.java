@@ -75,7 +75,8 @@ public class ArstrinnCacheService extends CacheService<ArstrinnResource> {
 		populateCache(orgId);
 	}
 
-    private void populateCache(String orgId) {
+    @Override
+    public void populateCache(String orgId) {
 		log.info("Populating Arstrinn cache for {}", orgId);
         Event event = new Event(orgId, Constants.COMPONENT, UtdanningsprogramActions.GET_ALL_ARSTRINN, Constants.CACHE_SERVICE);
         consumerEventUtil.send(event);
