@@ -7,6 +7,7 @@ import no.fint.relations.FintLinker;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import java.util.stream.IntStream;
 
 import static java.util.Objects.isNull;
 import static org.springframework.util.StringUtils.isEmpty;
@@ -45,6 +46,21 @@ public class SkoleLinker extends FintLinker<SkoleResource> {
         
         return null;
     }
-    
+
+    int[] hashCodes(SkoleResource skole) {
+        IntStream.Builder builder = IntStream.builder();
+        if (!isNull(skole.getSkolenummer()) && !isEmpty(skole.getSkolenummer().getIdentifikatorverdi())) {
+            builder.add(skole.getSkolenummer().getIdentifikatorverdi().hashCode());
+        }
+        if (!isNull(skole.getSystemId()) && !isEmpty(skole.getSystemId().getIdentifikatorverdi())) {
+            builder.add(skole.getSystemId().getIdentifikatorverdi().hashCode());
+        }
+        if (!isNull(skole.getOrganisasjonsnummer()) && !isEmpty(skole.getOrganisasjonsnummer().getIdentifikatorverdi())) {
+            builder.add(skole.getOrganisasjonsnummer().getIdentifikatorverdi().hashCode());
+        }
+        
+        return builder.build().toArray();
+    }
+
 }
 

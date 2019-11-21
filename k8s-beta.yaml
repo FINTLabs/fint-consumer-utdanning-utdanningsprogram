@@ -43,6 +43,7 @@ spec:
             - {name: TZ, value: Europe/Oslo}
             - {name: JAVA_TOOL_OPTIONS, value: '-XX:+ExitOnOutOfMemoryError -Xmx2G -verbose:gc'}
             - {name: fint.audit.mongo.databasename, value: fint-audit-beta}
+            - {name: fint.audit.mongo.collection, value: auditEvents}
             - name: fint.audit.mongo.connection-string
               valueFrom:
                 secretKeyRef: {key: mongodb, name: fint-audit}
@@ -55,7 +56,7 @@ spec:
             - {name: fint.relations.default-base-url, value: 'https://beta.felleskomponent.no'}
             - {name: server.context-path, value: /utdanning/utdanningsprogram}
             - {name: spring.mvc.logResolvedException,  value: 'false'}
-          image: fintlabs.azurecr.io/consumer-utdanning-utdanningsprogram:build.6
+          image: fintlabs.azurecr.io/consumer-utdanning-utdanningsprogram:PR-3.1
           name: consumer-utdanning-utdanningsprogram
           ports:
             - {containerPort: 8080}
@@ -89,6 +90,7 @@ spec:
             - {name: TZ, value: Europe/Oslo}
             - {name: JAVA_TOOL_OPTIONS, value: '-XX:+ExitOnOutOfMemoryError -Xmx2G -verbose:gc'}
             - {name: fint.audit.mongo.databasename, value: fint-audit-beta}
+            - {name: fint.audit.mongo.collection, value: auditEvents}
             - name: fint.audit.mongo.connection-string
               valueFrom:
                 secretKeyRef: {key: mongodb, name: fint-audit}
@@ -100,7 +102,7 @@ spec:
             - {name: fint.provider.max-number-of-emitters, value: '5'}
             - {name: server.context-path, value: /utdanning/utdanningsprogram/provider}
             - {name: fint.provider.assets.endpoint, value: 'https://admin.fintlabs.no/api/components/assets/utdanning_utdanningsprogram'}
-          image: fintlabs.azurecr.io/provider:2.1.0
+          image: fintlabs.azurecr.io/provider:PR-32.5
           name: provider-utdanning-utdanningsprogram
           ports:
             - {containerPort: 8080}
