@@ -60,7 +60,12 @@ spec:
             - {name: fint.hazelcast.kubernetes.labelValue, value: utdanning-utdanningsprogram}
             - {name: fint.relations.default-base-url, value: 'https://beta.felleskomponent.no'}
             - {name: server.context-path, value: /utdanning/utdanningsprogram}
-          image: fintlabs.azurecr.io/consumer-utdanning-utdanningsprogram:3.3.0
+          envFrom:
+            - configMapRef:
+                name: fint-environment
+            - secretRef:
+                name: fint-events-azure-eventhub
+          image: fintlabs.azurecr.io/consumer-utdanning-utdanningsprogram:build.11
           name: consumer-utdanning-utdanningsprogram
           ports:
             - {containerPort: 8080}
@@ -113,7 +118,12 @@ spec:
             - {name: fint.provider.max-number-of-emitters, value: '5'}
             - {name: server.context-path, value: /utdanning/utdanningsprogram/provider}
             - {name: fint.provider.assets.endpoint, value: 'https://admin.fintlabs.no/api/components/assets/utdanning_utdanningsprogram'}
-          image: fintlabs.azurecr.io/provider:2.2.0
+          envFrom:
+            - configMapRef:
+                name: fint-environment
+            - secretRef:
+                name: fint-events-azure-eventhub
+          image: fintlabs.azurecr.io/provider:2.3.0-alpha-2
           name: provider-utdanning-utdanningsprogram
           ports:
             - {containerPort: 8080}
