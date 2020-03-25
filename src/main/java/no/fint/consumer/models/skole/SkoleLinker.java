@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.Objects.isNull;
 import static org.springframework.util.StringUtils.isEmpty;
-
 
 @Component
 public class SkoleLinker extends FintLinker<SkoleResource> {
@@ -34,17 +34,23 @@ public class SkoleLinker extends FintLinker<SkoleResource> {
 
     @Override
     public String getSelfHref(SkoleResource skole) {
+        return getAllSelfHrefs(skole).findFirst().orElse(null);
+    }
+
+    @Override
+    public Stream<String> getAllSelfHrefs(SkoleResource skole) {
+        Stream.Builder<String> builder = Stream.builder();
         if (!isNull(skole.getSkolenummer()) && !isEmpty(skole.getSkolenummer().getIdentifikatorverdi())) {
-            return createHrefWithId(skole.getSkolenummer().getIdentifikatorverdi(), "skolenummer");
+            builder.add(createHrefWithId(skole.getSkolenummer().getIdentifikatorverdi(), "skolenummer"));
         }
         if (!isNull(skole.getSystemId()) && !isEmpty(skole.getSystemId().getIdentifikatorverdi())) {
-            return createHrefWithId(skole.getSystemId().getIdentifikatorverdi(), "systemid");
+            builder.add(createHrefWithId(skole.getSystemId().getIdentifikatorverdi(), "systemid"));
         }
         if (!isNull(skole.getOrganisasjonsnummer()) && !isEmpty(skole.getOrganisasjonsnummer().getIdentifikatorverdi())) {
-            return createHrefWithId(skole.getOrganisasjonsnummer().getIdentifikatorverdi(), "organisasjonsnummer");
+            builder.add(createHrefWithId(skole.getOrganisasjonsnummer().getIdentifikatorverdi(), "organisasjonsnummer"));
         }
         
-        return null;
+        return builder.build();
     }
 
     int[] hashCodes(SkoleResource skole) {

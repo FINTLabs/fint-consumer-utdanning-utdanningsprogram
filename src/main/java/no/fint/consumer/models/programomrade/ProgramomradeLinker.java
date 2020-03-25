@@ -8,10 +8,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.Objects.isNull;
 import static org.springframework.util.StringUtils.isEmpty;
-
 
 @Component
 public class ProgramomradeLinker extends FintLinker<ProgramomradeResource> {
@@ -34,11 +34,17 @@ public class ProgramomradeLinker extends FintLinker<ProgramomradeResource> {
 
     @Override
     public String getSelfHref(ProgramomradeResource programomrade) {
+        return getAllSelfHrefs(programomrade).findFirst().orElse(null);
+    }
+
+    @Override
+    public Stream<String> getAllSelfHrefs(ProgramomradeResource programomrade) {
+        Stream.Builder<String> builder = Stream.builder();
         if (!isNull(programomrade.getSystemId()) && !isEmpty(programomrade.getSystemId().getIdentifikatorverdi())) {
-            return createHrefWithId(programomrade.getSystemId().getIdentifikatorverdi(), "systemid");
+            builder.add(createHrefWithId(programomrade.getSystemId().getIdentifikatorverdi(), "systemid"));
         }
         
-        return null;
+        return builder.build();
     }
 
     int[] hashCodes(ProgramomradeResource programomrade) {
