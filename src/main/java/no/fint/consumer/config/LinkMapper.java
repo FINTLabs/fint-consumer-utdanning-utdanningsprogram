@@ -12,10 +12,7 @@ import no.fint.model.utdanning.timeplan.Fag;
 import no.fint.model.utdanning.timeplan.Rom;
 import no.fint.model.utdanning.timeplan.Time;
 import no.fint.model.utdanning.timeplan.Undervisningsgruppe;
-import no.fint.model.utdanning.utdanningsprogram.Arstrinn;
-import no.fint.model.utdanning.utdanningsprogram.Programomrade;
-import no.fint.model.utdanning.utdanningsprogram.Skole;
-import no.fint.model.utdanning.utdanningsprogram.Utdanningsprogram;
+import no.fint.model.utdanning.utdanningsprogram.*;
 
 import java.util.Map;
 
@@ -25,6 +22,7 @@ public class LinkMapper {
         return ImmutableMap.<String, String>builder()
                 .put(Arstrinn.class.getName(), contextPath + RestEndpoints.ARSTRINN)
                 .put(Programomrade.class.getName(), contextPath + RestEndpoints.PROGRAMOMRADE)
+                .put(Programomrademedlemskap.class.getName(), contextPath + RestEndpoints.PROGRAMOMRADEMEDLEMSKAP)
                 .put(Skole.class.getName(), contextPath + RestEndpoints.SKOLE)
                 .put(Utdanningsprogram.class.getName(), contextPath + RestEndpoints.UTDANNINGSPROGRAM)
                 .put(Basisgruppe.class.getName(), "/utdanning/elev/basisgruppe")
