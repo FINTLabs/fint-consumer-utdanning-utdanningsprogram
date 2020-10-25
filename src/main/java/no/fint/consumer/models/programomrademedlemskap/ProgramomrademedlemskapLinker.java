@@ -1,6 +1,5 @@
 package no.fint.consumer.models.programomrademedlemskap;
 
-import no.fint.model.resource.Link;
 import no.fint.model.resource.utdanning.utdanningsprogram.ProgramomrademedlemskapResource;
 import no.fint.model.resource.utdanning.utdanningsprogram.ProgramomrademedlemskapResources;
 import no.fint.relations.FintLinker;
@@ -26,9 +25,14 @@ public class ProgramomrademedlemskapLinker extends FintLinker<Programomrademedle
 
     @Override
     public ProgramomrademedlemskapResources toResources(Collection<ProgramomrademedlemskapResource> collection) {
+        return toResources(collection.stream(), 0, 0, collection.size());
+    }
+
+    @Override
+    public ProgramomrademedlemskapResources toResources(Stream<ProgramomrademedlemskapResource> stream, int offset, int size, int totalItems) {
         ProgramomrademedlemskapResources resources = new ProgramomrademedlemskapResources();
-        collection.stream().map(this::toResource).forEach(resources::addResource);
-        resources.addSelf(Link.with(self()));
+        stream.map(this::toResource).forEach(resources::addResource);
+        addPagination(resources, offset, size, totalItems);
         return resources;
     }
 
