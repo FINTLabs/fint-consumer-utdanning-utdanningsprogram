@@ -23,8 +23,6 @@ public class LinkMapper {
             .put("no.fint.model.utdanning.elev.Medlemskap", "/utdanning/elev/medlemskap")
             .put("no.fint.model.utdanning.elev.Elevforhold", "/utdanning/elev/elevforhold")
             .put("no.fint.model.utdanning.timeplan.Fag", "/utdanning/timeplan/fag")
-            .put("no.fint.model.utdanning.larling.Larling", "/utdanning/larling/larling")
-            .put("no.fint.model.utdanning.ot.OTUngdom", "/utdanning/ot/otungdom")
             .put("no.fint.model.administrasjon.organisasjon.Organisasjonselement", "/administrasjon/organisasjon/organisasjonselement")
             .put("no.fint.model.utdanning.kodeverk.Skoleeiertype", "/utdanning/kodeverk/skoleeiertype")
             .put("no.fint.model.utdanning.elev.Kontaktlarergruppe", "/utdanning/elev/kontaktlarergruppe")
