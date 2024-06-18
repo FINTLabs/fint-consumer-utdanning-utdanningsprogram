@@ -182,7 +182,7 @@ public class ArstrinnController {
 
             fintAuditService.audit(response, Status.SENT_TO_CLIENT);
 
-            return linker.toResource(arstrinn);
+            return linker.mapAndResetLinks(arstrinn);
         }    
     }
 
