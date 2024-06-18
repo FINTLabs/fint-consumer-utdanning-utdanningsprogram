@@ -182,7 +182,7 @@ public class UtdanningsprogramController {
 
             fintAuditService.audit(response, Status.SENT_TO_CLIENT);
 
-            return linker.toResource(utdanningsprogram);
+            return linker.mapAndResetLinks(utdanningsprogram);
         }    
     }
 
