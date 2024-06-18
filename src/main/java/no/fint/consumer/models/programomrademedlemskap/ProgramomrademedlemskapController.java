@@ -182,7 +182,7 @@ public class ProgramomrademedlemskapController {
 
             fintAuditService.audit(response, Status.SENT_TO_CLIENT);
 
-            return linker.toResource(programomrademedlemskap);
+            return linker.mapAndResetLinks(programomrademedlemskap);
         }    
     }
 
