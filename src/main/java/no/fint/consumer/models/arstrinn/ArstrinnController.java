@@ -43,9 +43,9 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
-import no.fint.model.resource.utdanning.utdanningsprogram.ArstrinnResource;
-import no.fint.model.resource.utdanning.utdanningsprogram.ArstrinnResources;
-import no.fint.model.utdanning.utdanningsprogram.UtdanningsprogramActions;
+import no.novari.fint.model.resource.utdanning.utdanningsprogram.ArstrinnResource;
+import no.novari.fint.model.resource.utdanning.utdanningsprogram.ArstrinnResources;
+import no.novari.fint.model.utdanning.utdanningsprogram.UtdanningsprogramActions;
 
 @Slf4j
 @Api(tags = {"Arstrinn"})

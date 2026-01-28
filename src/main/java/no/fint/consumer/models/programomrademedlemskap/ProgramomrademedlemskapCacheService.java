@@ -26,10 +26,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import no.fint.model.utdanning.utdanningsprogram.Programomrademedlemskap;
-import no.fint.model.resource.utdanning.utdanningsprogram.ProgramomrademedlemskapResource;
-import no.fint.model.utdanning.utdanningsprogram.UtdanningsprogramActions;
-import no.fint.model.felles.kompleksedatatyper.Identifikator;
+import no.novari.fint.model.utdanning.utdanningsprogram.Programomrademedlemskap;
+import no.novari.fint.model.resource.utdanning.utdanningsprogram.ProgramomrademedlemskapResource;
+import no.novari.fint.model.utdanning.utdanningsprogram.UtdanningsprogramActions;
+import no.novari.fint.model.felles.kompleksedatatyper.Identifikator;
 
 @Slf4j
 @Service

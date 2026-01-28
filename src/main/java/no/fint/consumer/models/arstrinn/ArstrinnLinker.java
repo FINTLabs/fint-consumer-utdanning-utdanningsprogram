@@ -1,7 +1,7 @@
 package no.fint.consumer.models.arstrinn;
 
-import no.fint.model.resource.utdanning.utdanningsprogram.ArstrinnResource;
-import no.fint.model.resource.utdanning.utdanningsprogram.ArstrinnResources;
+import no.novari.fint.model.resource.utdanning.utdanningsprogram.ArstrinnResource;
+import no.novari.fint.model.resource.utdanning.utdanningsprogram.ArstrinnResources;
 import no.fint.relations.FintLinker;
 import org.springframework.stereotype.Component;
 

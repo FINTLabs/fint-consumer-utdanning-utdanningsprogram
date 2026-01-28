@@ -1,7 +1,7 @@
 package no.fint.consumer.models.programomrade;
 
-import no.fint.model.resource.utdanning.utdanningsprogram.ProgramomradeResource;
-import no.fint.model.resource.utdanning.utdanningsprogram.ProgramomradeResources;
+import no.novari.fint.model.resource.utdanning.utdanningsprogram.ProgramomradeResource;
+import no.novari.fint.model.resource.utdanning.utdanningsprogram.ProgramomradeResources;
 import no.fint.relations.FintLinker;
 import org.springframework.stereotype.Component;
 
